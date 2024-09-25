@@ -25,7 +25,7 @@ Route::get('testapi', function () {
 });
 
 // Products End points
-Route::get('test2', [ProductController::class, 'test']);
+Route::get('test2', [ProductController::class, 'test'])->middleware('auth:sanctum');
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
 Route::post('products', [ProductController::class, 'store']);
@@ -36,3 +36,9 @@ Route::delete('products/{id}', [ProductController::class, 'destroy']);
 // authentification & authorization
 Route::post('users/register', [AuthController::class, 'register']);
 Route::post('users/login', [AuthController::class, 'login']);
+
+// group middleware
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('users/logout', [AuthController::class, 'logout']);
+    Route::post('user', [AuthController::class, 'user']);
+});

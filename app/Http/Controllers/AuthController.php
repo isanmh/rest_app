@@ -67,4 +67,29 @@ class AuthController extends Controller
         ];
         return response()->json($data, Response::HTTP_OK);
     }
+
+    // detail user
+    public function user()
+    {
+        $data = [
+            'status' => Response::HTTP_OK,
+            'user' => auth()->user(),
+        ];
+        return response()->json($data, Response::HTTP_OK);
+    }
+
+    public function logout()
+    {
+
+        // revoke login token
+        auth()->user()->tokens->each(function ($token) {
+            $token->delete();
+        });
+
+        $data = [
+            'status' => Response::HTTP_OK,
+            'message' => 'Logout berhasil',
+        ];
+        return response()->json($data, Response::HTTP_OK);
+    }
 }
