@@ -96,7 +96,7 @@ class ProductController extends Controller
                 'name' => 'string|max:255',
                 'description' => 'string',
                 'price' => 'integer',
-                'image' => 'image|mimes:png,jpg,jpeg|max:2048',
+                // 'image' => 'image|mimes:png,jpg,jpeg|max:2048',
             ]);
             $input = $request->all();
 
@@ -107,7 +107,10 @@ class ProductController extends Controller
                 $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
                 $image->move($target, $productImage);
                 $input['image'] = "$productImage";
+            } else {
+                $input['image'] = $product->image;
             }
+
             $product->update($input);
             $data = [
                 'status' => Response::HTTP_OK,

@@ -41,6 +41,6 @@ Route::post('users/login', [AuthController::class, 'login']);
 // Route::group(['middleware' => ['auth:sanctum', 'snap-bi']], function () {
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('users/logout', [AuthController::class, 'logout']);
-    Route::post('user', [AuthController::class, 'user']);
+    Route::get('user', [AuthController::class, 'user']);
     // Route::get('products', [ProductController::class, 'index']);
 });
