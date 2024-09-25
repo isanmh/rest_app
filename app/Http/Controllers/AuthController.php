@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // auth dari BI
+    public const header = [
+        'X-SIGNATURE' => '123456',
+        'X-PARTNER-ID' => '123456'
+    ];
+
     // login user
     public function register(Request $request)
     {

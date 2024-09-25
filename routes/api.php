@@ -25,8 +25,8 @@ Route::get('testapi', function () {
 });
 
 // Products End points
-Route::get('test2', [ProductController::class, 'test'])->middleware('auth:sanctum');
-Route::get('products', [ProductController::class, 'index']);
+Route::get('test2', [ProductController::class, 'test'])->middleware('auth:sanctum', 'snap-bi');
+// Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
 Route::post('products', [ProductController::class, 'store']);
 Route::put('products/{id}', [ProductController::class, 'update']);
@@ -38,7 +38,8 @@ Route::post('users/register', [AuthController::class, 'register']);
 Route::post('users/login', [AuthController::class, 'login']);
 
 // group middleware
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'snap-bi']], function () {
     Route::post('users/logout', [AuthController::class, 'logout']);
     Route::post('user', [AuthController::class, 'user']);
+    Route::get('products', [ProductController::class, 'index']);
 });
