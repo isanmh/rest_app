@@ -1,0 +1,35 @@
+beberapa extension:
+- vscode-icons
+- prettier
+- auto close tag
+- auto complate tag
+- auto import
+- auto rename tag
+- color highlight
+- CSS Peek
+- Intllesense for CSS class names
+- Javascript (ES6) code snippets
+- live server
+- npm
+- npm intellisense
+- SCSS Formatter
+- Svg Preview
+- Tailwind CSS IntelliSense
+- Laravel Pack
+
+cara mambuat model, controller, migration, factory, seeder :
+php artisan make:model Product -mc
+
+setting .env database:
+
+cara membuat migrasi :
+php artisan make:migration create_products_table
+php artisan migrate
+
+cara membuat factory & seeder :
+php artisan make:factory ProductFactory
+php artisan make:seeder ProductSeeder
+
+cara seed data :
+php artisan db:seed --class=ProductSeeder
+php artisan migrate:refresh --seed
