@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,7 @@ Route::post('products', [ProductController::class, 'store']);
 Route::put('products/{id}', [ProductController::class, 'update']);
 Route::delete('products/{id}', [ProductController::class, 'destroy']);
 // Route::patch('products/{id}', [ProductController::class, 'update']);
+
+// authentification & authorization
+Route::post('users/register', [AuthController::class, 'register']);
+Route::post('users/login', [AuthController::class, 'login']);
