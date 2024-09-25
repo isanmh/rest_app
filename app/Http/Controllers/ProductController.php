@@ -103,7 +103,7 @@ class ProductController extends Controller
             // logic upload image
             if ($image = $request->file('image')) {
                 $target = 'assets/images/';
-                // unlink($target . $product->image);
+                unlink($target . $product->image);
                 $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
                 $image->move($target, $productImage);
                 $input['image'] = "$productImage";
@@ -130,6 +130,12 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if ($product) {
+            // jika ada image, hapus image
+            $target = 'assets/images/';
+            if ($product->image) {
+                unlink($target . $product->image);
+            }
+
             $product->delete();
             $data = [
                 'status' => Response::HTTP_OK,

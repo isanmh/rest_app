@@ -46,3 +46,12 @@ DB_DATABASE=rest_api
 php artisan migrate
 php artisan db:seed --class=ProductSeeder
 php artisan serve
+
+cara membuat Auth & Authorization :
+php artisan make:controller AuthController
+
+cara membuat custom header di laravel :
+php artisan make:middleware CustomHeader
+
+
+
