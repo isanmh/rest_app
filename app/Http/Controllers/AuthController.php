@@ -40,4 +40,31 @@ class AuthController extends Controller
         ];
         return response()->json($data, Response::HTTP_OK);
     }
+
+    // login user
+    public function login(Request $request)
+    {
+        $input = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::where('email', $input['email'])->first();
+        // cek password
+        if (!$user || !Hash::check($input['password'], $user->password)) {
+            return response()->json([
+                'status' => Response::HTTP_UNAUTHORIZED,
+                'message' => 'Invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+        $token = $user->createToken('TokenRahasiInix')->plainTextToken;
+        $data = [
+            'status' => Response::HTTP_OK,
+            'message' => 'User berhasil login',
+            'data' => $user,
+            'token' => $token,
+            'type' => 'Bearer'
+        ];
+        return response()->json($data, Response::HTTP_OK);
+    }
 }
