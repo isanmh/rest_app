@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SignatureController;
+use App\Http\Controllers\SignatureTransactionController;
+use App\Http\Controllers\TokenApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,3 +47,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('user', [AuthController::class, 'user']);
     // Route::get('products', [ProductController::class, 'index']);
 });
+
+// SNAP BI
+Route::get('/generate-signature', [SignatureController::class, 'generateSignature']);
+Route::post('/send-request', [TokenApiController::class, 'sendRequest']);
+Route::get('/generate-signature-transaction', [SignatureTransactionController::class, 'generateSignature']);
